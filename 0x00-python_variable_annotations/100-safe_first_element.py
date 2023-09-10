@@ -1,17 +1,18 @@
 #!/usr/bin/env python3
 
 """
-This module defines a function for safely retrieving the first element of an iterable.
+Module: my_module
+This module provides a function for obtaining the first element of an iterable.
 """
 
 from typing import Iterable, Any
 
 def safe_first_element(lst: Iterable[Any]) -> Any:
     """
-    Safely retrieves the first element of an iterable.
+    Get the first element of an iterable if it exists.
 
     Args:
-        lst (Iterable[Any]): An iterable of elements of any type.
+        lst (Iterable[Any]): An iterable of elements.
 
     Returns:
         Any: The first element of the iterable, or None if the iterable is empty.
@@ -20,4 +21,3 @@ def safe_first_element(lst: Iterable[Any]) -> Any:
         return lst[0]
     else:
         return None
-
