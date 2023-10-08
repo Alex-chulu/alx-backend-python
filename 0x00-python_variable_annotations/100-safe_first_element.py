@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from typing import List, Any, Union
 
 def safe_first_element(lst: List[Any]) -> Union[None, Any]:
