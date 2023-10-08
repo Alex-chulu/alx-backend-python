@@ -1,16 +1,18 @@
 #!/usr/bin/env python3
 
-from typing import List, Any, Union
+"""This module contains a function for safely retrieving the first element of a sequence.
+"""
 
-def safe_first_element(lst: List[Any]) -> Union[None, Any]:
-    """
-    Safely retrieve the first element of a list if it exists.
+from typing import Any, Sequence, Union
+
+def safe_first_element(lst: Sequence[Any]) -> Union[Any, None]:
+    """Retrieves the first element of a sequence if it exists.
 
     Args:
-        lst (List[Any]): A list of elements of any type.
+        lst (Sequence[Any]): The input sequence.
 
     Returns:
-        Union[None, Any]: The first element of the list if it exists, else None.
+        Union[Any, None]: The first element of the sequence if it exists, or None if the sequence is empty.
     """
     if lst:
         return lst[0]
