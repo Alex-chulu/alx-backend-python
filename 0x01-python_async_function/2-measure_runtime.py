@@ -1,34 +1,41 @@
 #!/usr/bin/env python3
+"""
+Measure the runtime of wait_n and calculate average time.
+"""
 
 import asyncio
+import random
 import time
-from typing import List
+from typing import Callable
 
 wait_n = __import__('1-concurrent_coroutines').wait_n
+
 
 def measure_time(n: int, max_delay: int) -> float:
     """
     Measure the average execution time of wait_n(n, max_delay).
 
     Args:
-        n (int): Number of times to call wait_n.
-        max_delay (int): Maximum delay for each wait_n call.
+        n (int): The number of times to call wait_n.
+        max_delay (int): The maximum delay for wait_n.
 
     Returns:
-        float: Average execution time in seconds.
+        float: The average execution time in seconds.
     """
     start_time = time.time()
 
-    loop = asyncio.get_event_loop()
-    delays = loop.run_until_complete(wait_n(n, max_delay))
+    async def run_wait_n():
+        await wait_n(n, max_delay)
 
-    end_time = time.time()
-    total_time = end_time - start_time
+    asyncio.run(run_wait_n())
 
+    total_time = time.time() - start_time
     return total_time / n
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     n = 5
-    max_delay = 2
+    max_delay = 5
     avg_time = measure_time(n, max_delay)
-    print(f"Average execution time for {n} calls with max delay {max_delay}: {avg_time} seconds")
+    print(f"Average time for wait_n({n}, {max_delay}): {avg_time:.2f} seconds")
+
