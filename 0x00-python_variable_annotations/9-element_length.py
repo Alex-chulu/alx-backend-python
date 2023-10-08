@@ -1,16 +1,22 @@
 #!/usr/bin/env python3
 
-from typing import List, Tuple, Iterable, Sequence
+from typing import List, Tuple
 
-def element_length(lst: Iterable[Sequence]) -> List[Tuple[Sequence, int]]:
+def element_length(lst: List[str]) -> List[Tuple[str, int]]:
     """
-    Calculate the length of each element in an iterable of sequences.
+    Calculate the length of each element in the input list and return a list
+    of tuples containing each element and its corresponding length.
 
     Args:
-    - lst: An iterable of sequences (e.g., a list of strings).
+        lst (List[str]): The list of strings to calculate lengths for.
 
     Returns:
-    - A list of tuples, where each tuple contains a sequence (from the input iterable)
-      and its corresponding length as an integer.
+        List[Tuple[str, int]]: A list of tuples where the first element is a
+        string from the input list, and the second element is its length.
+
+    Example:
+        >>> element_length(["apple", "banana", "cherry"])
+        [('apple', 5), ('banana', 6), ('cherry', 6)]
     """
     return [(i, len(i)) for i in lst]
+
