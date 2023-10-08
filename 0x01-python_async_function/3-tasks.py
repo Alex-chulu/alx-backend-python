@@ -1,26 +1,20 @@
 #!/usr/bin/env python3
+"""Create a asyncio.Task with wait_random from 0-basic_async_syntax."""
 
 import asyncio
-from random import uniform
+import random
 
-def wait_random(max_delay: int) -> asyncio.Task:
-    """
-    Create an asyncio.Task that waits for a random delay between 0 and max_delay (inclusive).
+wait_random = __import__('0-basic_async_syntax').wait_random
 
-    Args:
-        max_delay (int): Maximum delay in seconds.
 
-    Returns:
-        asyncio.Task: A Task that waits for the random delay.
-    """
-    async def random_delay():
-        await asyncio.sleep(uniform(0, max_delay))
+def task_wait_random(max_delay: int) -> asyncio.Task:
+    """Create an asyncio.Task for wait_random with the given max_delay."""
+    loop = asyncio.get_event_loop()
+    return loop.create_task(wait_random(max_delay))
 
-    return asyncio.create_task(random_delay())
 
-# Example usage:
 if __name__ == "__main__":
-    max_delay = 5
-    task = wait_random(max_delay)
-    asyncio.run(task)  # Run the task in an asyncio event loop
+    random.seed(1)
+    task = task_wait_random(5)
+    asyncio.run(task)
 
